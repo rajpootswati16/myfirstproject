@@ -56,7 +56,7 @@
           <div class="heading">
             <div>
               <img src="/images/logo.png" width="50" height="50"/>
-              <span style="padding-left:10px; letter-spacing: 1; font-family: Poppins; color:#82ccdd; font-size: 20px; font-weight: bold;">Edit Book</span>
+              <span style="padding-left:10px; letter-spacing: 1; font-family: Poppins; color:#82ccdd; font-size: 20px; font-weight: bold;">Edit Book Details></span>
             </div>
 
             <div>
@@ -83,12 +83,12 @@
       
               <div class="col-md-6">
                   <label for="author" class="form-label"><b>Author</b></label>
-                  <input name="author" type="text" class="form-control" id="author">
+                  <input name="author" value="<% data.author %>" type="text" class="form-control" id="author">
               </div>
       
               <div class="col-md-6">
                   <label for="publisher" class="form-label"><b>Publisher</b></label>
-                  <input name="publisher" type="text" class="form-control" id="publisher">
+                  <input name="publisher" value="<%= data.publisher %>" type="text" class="form-control" id="publisher">
               </div>
       
               <div class="col-md-6">
@@ -124,11 +124,11 @@
               </div>
       
               <div class="col-md-6 centerstyle" >
-                  <button style="width: 50%;" type="submit" class="btn btn-primary">Save</button>
+                  <button style="width: 50%;" type="submit" class="btn btn-primary">Edit</button>
               </div>
       
               <div class="col-md-6 centerstyle">
-                  <button style="width: 50%;" type="reset" class="btn btn-primary">Reset</button>
+                  <button style="width: 50%;" type="reset" class="btn btn-primary">Delete</button>
               </div>
       
       
