@@ -48,6 +48,7 @@ router.post('/submit_book_details', upload.single('poster'),  function(req,res){
     })
 })
 
+/* This API is to display all Books Data */
 router.get('/fetch_all_books', function(req,res){
     pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where BT.titleid=BD.titleid) as title  from bookdetails BD", function(error,result){
         if(error){ console.log(error)
@@ -59,6 +60,15 @@ router.get('/fetch_all_books', function(req,res){
     })
 })
 
-
+router.get('/edit_book_data', function(req,res){
+    pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where Bt.titleid=BD.titleid) as title from bookdetails BD where BD.bookid=?", [req.body.bookid], function(error,result){
+        if(error){
+            res.render('displaybyid', {data:[]})
+        }
+        else{
+            res.render('displaybyid', {data:result[0]})
+        }
+    })
+})
 
 module.exports = router;
