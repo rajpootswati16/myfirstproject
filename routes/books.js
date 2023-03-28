@@ -61,9 +61,9 @@ router.get('/fetch_all_books', function(req,res){
 })
 
 router.get('/edit_book_data', function(req,res){
-    pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where Bt.titleid=BD.titleid) as title from bookdetails BD where BD.bookid=?", [req.body.bookid], function(error,result){
-        if(error){
-            res.render('displaybyid', {data:[]})
+    pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where BT.titleid=BD.titleid) as title from bookdetails BD where BD.bookid=?",[req,body.bookid], function(error,result){
+        if(error){ console.log(error)
+            res.render('displayallbooks', {data:[]})
         }
         else{ console.log(result)
             res.render('displayallbooks', {data:result[0]})
