@@ -52,10 +52,10 @@ router.post('/submit_book_details', upload.single('poster'),  function(req,res){
 router.get('/fetch_all_books', function(req,res){
     pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where BT.titleid=BD.titleid) as title  from bookdetails BD", function(error,result){
         if(error){ console.log(error)
-            res.render('displayallbooks', {data:[]})
+            res.render('displaybyid', {data:[]})
         }
         else{ console.log(result)
-            res.render('displayallbooks', {data:result})
+            res.render('displaybyid', {data:result[0]})
         }
     })
 })
@@ -66,7 +66,7 @@ router.get('/edit_book_data', function(req,res){
             res.render('displaybyid', {data:[]})
         }
         else{ console.log(result)
-            res.render('displaybyid', {data:result[0]})
+            res.render('displayallbooks', {data:result[0]})
         }
     })
 })
