@@ -56,7 +56,7 @@
           <div class="heading">
             <div>
               <img src="/images/logo.png" width="50" height="50"/>
-              <span style="padding-left:10px; letter-spacing: 1; font-family: Poppins; color:#82ccdd; font-size: 20px; font-weight: bold;">Edit Book Details></span>
+              <span style="padding-left:10px; letter-spacing: 1; font-family: Poppins; color:#82ccdd; font-size: 20px; font-weight: bold;">Edit Book</span>
             </div>
 
             <div>
@@ -66,24 +66,25 @@
             </div>
         </div>
       
-          <form class="row g-3" style="font-style: italic; color: darkgray;" action="/books/submit_book_details" method="post" enctype="multipart/form-data">
-              <div class="col-md-6">
+          <form class="row g-3" style="font-style: italic; color: darkgray;" action="/books/edit_book_details" method="post">
+              <input type="hidden" name="bookid" value="<%= data.bookid %>">
+            <div class="col-md-6">
                   <label for="subjectid" class="form-label"><b>Subject</b></label>
                   <select name="subjectid" id="subjects" class="form-select" aria-label="Default select example">
-                      <option selected>-Select Subject-</option>
+                      <option value="<%=data.subjectid%>"> <%=data.subjectname%> </option>
                   </select>
               </div>
       
               <div class="col-md-6">
                   <label for="titleid" class="form-label"><b>Title</b></label>
                   <select name="titleid" id="title" class="form-select" aria-label="Default select example">
-                      <option selected>-Select Title-</option>
+                      <option value="<%=data.titleid%>"> <%=data.title%> </option>
                   </select>
               </div>
       
               <div class="col-md-6">
                   <label for="author" class="form-label"><b>Author</b></label>
-                  <input name="author" value="<% data.author %>" type="text" class="form-control" id="author">
+                  <input name="author" value="<%= data.author %>" type="text" class="form-control" id="author">
               </div>
       
               <div class="col-md-6">
@@ -93,42 +94,37 @@
       
               <div class="col-md-6">
                   <label for="price" class="form-label"><b>Price</b></label>
-                  <input name="price" type="text" class="form-control" id="price">
+                  <input name="price" value="<%=data.price%>" type="text" class="form-control" id="price">
               </div>
       
               <div class="col-md-6">
                   <label for="offer" class="form-label"><b>Offer</b></label>
-                  <input name="offer" type="text" class="form-control" id="offer">
+                  <input name="offer" value="<%=data.offer%>" type="text" class="form-control" id="offer">
               </div>
       
-              <div class="col-md-6" style="display: flex; flex-direction: column;">
+              <div class="col-md-12" style="display: flex; flex-direction: column;">
       
                 <div><b>Status</b></div>
                   <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="Available" name="status" id="status">
+                      <input class="form-check-input" <%= data.status=="Available"?"checked":"" %> type="radio" value="Available" name="status" id="status">
                       <label class="form-check-label" for="status">Available</label>
                    </div>
       
                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="Not Available" name="status" id="status">
+                      <input class="form-check-input" <%= data.status=="Not Available"?"checked":"" %> type="radio" value="Not Available" name="status" id="status">
                       <label class="form-check-label" for="status">Not Available</label>
                    </div>
                   </div>
       
               </div>
       
-              <div class="col-md-6">
-                  <label for="formFile" class="form-label"><b>Poster</b></label>
-                  <input name="poster" class="form-control" name="poster" type="file" id="formFile">
-              </div>
-      
               <div class="col-md-6 centerstyle" >
-                  <button style="width: 50%;" type="submit" class="btn btn-primary">Edit</button>
+                  <button style="width: 50%;" value="Edit" type="submit" name="btn" class="btn btn-primary">Edit</button>
               </div>
       
               <div class="col-md-6 centerstyle">
-                  <button style="width: 50%;" type="reset" class="btn btn-primary">Delete</button>
+                  <button style="width: 50%;" value="Delete" type="submit" name="btn" class="btn btn-primary">Delete</button>
               </div>
       
       

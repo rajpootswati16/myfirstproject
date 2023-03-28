@@ -61,7 +61,8 @@ router.get('/fetch_all_books', function(req,res){
 })
 
 router.get('/edit_book_data', function(req,res){
-    pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where BT.titleid=BD.titleid) as title from bookdetails BD where BD.bookid=?",[req,body.bookid], function(error,result){
+    console.log(req.query)
+    pool.query("select BD.*,(select BS.subjectname from subjects BS where BS.subjectid=BD.subjectid) as subjectname, (select BT.titlename from booktitle BT where BT.titleid=BD.titleid) as title from bookdetails BD where BD.bookid=?",[req.query.bookid], function(error,result){
         if(error){ console.log(error)
             res.render('displaybyid', {data:[]})
         }
@@ -69,6 +70,37 @@ router.get('/edit_book_data', function(req,res){
             res.render('displaybyid', {data:result[0]})
         }
     })
+})
+
+router.post('/edit_book_details',  function(req,res){
+    
+if(req.body.btn=="Edit"){
+    pool.query("update books.bookdetails set subjectid=?,titleid=?,author=?,publisher=?,price=?,offer=?,status=? where bookid=?",[req.body.subjectid,req.body.titleid,req.body.author,req.body.publisher,req.body.price,req.body.offer,req.body.status,req.body.bookid], function(error,result){
+
+        if(error){
+            console.log(error)
+            res.redirect('/books/fetch_all_books')
+        }
+
+        else{
+            res.redirect('/books/fetch_all_books')
+        }
+    })
+}
+else{
+    pool.query("Delete from books.bookdetails where bookid=?",[req.body.bookid], function(error,result){
+
+        if(error){
+            console.log(error)
+            res.redirect('/books/fetch_all_books')
+        }
+
+        else{
+            res.redirect('/books/fetch_all_books')
+        }
+    })
+}
+    
 })
 
 module.exports = router;
