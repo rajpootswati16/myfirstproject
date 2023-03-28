@@ -65,7 +65,7 @@ router.get('/edit_book_data', function(req,res){
         if(error){
             res.render('displaybyid', {data:[]})
         }
-        else{
+        else{ console.log(result)
             res.render('displaybyid', {data:result[0]})
         }
     })
