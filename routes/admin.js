@@ -1,5 +1,7 @@
 var express = require('express');
 var pool = require('./pool');
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch');
 var router = express.Router();
 
 router.get("/loginpage", function(req,res){
@@ -16,8 +18,9 @@ router.post("/chk_admin_login",function(req,res){
             if(result.length==0){
                 res.render('login',{message:'Invalid Username or Password'})
             }
-            else{
-                res.render('dashboard')
+            else{ console.log(result[0])
+                localStorage.setItem('ADMIN',result[0])
+                res.render('dashboard', {admin:result[0]})
             }
         }
     })
