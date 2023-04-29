@@ -1,0 +1,121 @@
+<style>
+    .maincontainer{
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background:#af4154;
+     }
+    .user_card{
+      height: 400px;
+      width: 350px;
+      margin-top: auto;
+      margin-bottom: auto;
+      background:#fbc093;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+      -moz-box-shadow:0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+      border-radius: 10px;
+     }
+  
+    .user_logo_container{
+      position: absolute;
+      height: 180;
+      width: 180;
+      top: -70px;
+      border-radius: 50%;
+      background: #af4154;
+      padding: 10px;
+      text-align: center;
+      }
+    
+    .user_logo{
+      height: 160px;
+      width: 160px;
+      border-radius: 50%;
+      border: 2px;
+      border-color: white;
+    }
+
+    .form_container{
+      margin-top: 100px;
+    }
+     
+    .centerstyle{
+      display: flex;
+      justify-content: center;
+    }
+    
+  </style>
+  
+  <html>
+    <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  
+    </head>
+    <body>
+
+      <div class="maincontainer h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+              
+              <div class="d-flex justify-content-center">
+                <div class="user_logo_container">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQlw2FJiWn_OmJ7YmnBtVLBDKZQUF1EU0WGgZgDCldlYuJFCOcai2QQkRyOjt-4cS7XY&usqp=CAU" class="user_logo" alt="Logo">
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-center form_container">
+                <form class="form" action="/admin/chk_admin_login" method="post">
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" name="emailid" class="form-control" value="" placeholder="Username">
+                  </div>
+                  
+                  <div class="input-group mb-2">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" value="" placeholder="Password">
+                  </div>
+                  
+                  <div class="form-group">
+                    <div class="custom-control">
+                      <input type="checkbox" required class="custom-control-input" id="customControlInline">
+                      <label class="custom-control-label" for="customControlInline">Remember me</label>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-12 centerstyle" >
+                    <button style="width: 50%; color: black; border-color: black;" type="submit" class="btn btn-outline-info">Login</button>
+                  </div>
+                  
+                  
+                  <div class="col-md-12 centerstyle">
+                    <span style="color: black; font-size: 14px; font-weight: bold; padding: 15px;"><%= message %></span>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </body>
+  </html>

@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/bookinterface', function(req, res, next) {
   res.render('bookinterface',{status:-1, message:''})
 
-})
+})  
 
 router.get('/fetch_all_subjects', function(req,res){
     pool.query("SELECT * FROM books.subjects", function(error,result){
@@ -102,5 +102,25 @@ else{
 }
     
 })
+
+router.get('/displayposter', function(req,res) {
+    res.render('displayposter',{data:req.query})
+   
+  })
+
+router.post('/edit_poster', upload.single('poster'),  function(req,res){
+
+    pool.query("update books.bookdetails set poster=? where bookid=?",[req.file.originalname,req.body.bookid], function(error,result){
+
+        if(error){
+            console.log(error)
+            res.redirect('/books/fetch_all_books')
+        }
+
+        else{
+            res.redirect('/books/fetch_all_books')
+        }
+    })
+})  
 
 module.exports = router;
