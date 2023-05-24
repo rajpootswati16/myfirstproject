@@ -2,10 +2,25 @@ var express = require('express');
 var pool = require('./pool');
 var upload= require('./multer');
 var router = express.Router();
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch');
 
 /* GET use to show Book interface*/
 router.get('/bookinterface', function(req, res, next) {
-  res.render('bookinterface',{status:-1, message:''})
+    try{var admin= localStorage.getItem('ADMIN')
+    console.log(admin)
+    if(admin){
+        res.render('bookinterface',{status:-1, message:''})
+    }
+    else{
+        res.render('login',{message:''})
+    }
+  
+}
+catch(e){
+    res.render('login',{message:''})
+}
+    
 
 })  
 
@@ -72,7 +87,7 @@ router.get('/edit_book_data', function(req,res){
     })
 })
 
-router.post('/edit_book_details',  function(req,res){
+router.post('/edit_book_details', function(req,res){
     
 if(req.body.btn=="Edit"){
     pool.query("update books.bookdetails set subjectid=?,titleid=?,author=?,publisher=?,price=?,offer=?,status=? where bookid=?",[req.body.subjectid,req.body.titleid,req.body.author,req.body.publisher,req.body.price,req.body.offer,req.body.status,req.body.bookid], function(error,result){
@@ -108,7 +123,7 @@ router.get('/displayposter', function(req,res) {
    
   })
 
-router.post('/edit_poster', upload.single('poster'),  function(req,res){
+router.post('/edit_poster', upload.single('poster'), function(req,res){
 
     pool.query("update books.bookdetails set poster=? where bookid=?",[req.file.originalname,req.body.bookid], function(error,result){
 

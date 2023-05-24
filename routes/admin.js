@@ -5,7 +5,19 @@ localStorage = new LocalStorage('./scratch');
 var router = express.Router();
 
 router.get("/loginpage", function(req,res){
-    res.render('login', {message:''})
+    try{var admin= localStorage.getItem('ADMIN')
+    console.log("adminnn",admin)
+    if(admin){
+        res.render('dashboard',{admin:JSON.parse(admin)}) 
+    }
+    else{
+        res.render('login',{message:''})
+    }
+  
+}
+catch(e){
+    res.render('login',{message:''})
+}
 
 })
 
@@ -19,11 +31,16 @@ router.post("/chk_admin_login",function(req,res){
                 res.render('login',{message:'Invalid Username or Password'})
             }
             else{ console.log(result[0])
-                localStorage.setItem('ADMIN',result[0])
+                localStorage.setItem('ADMIN',JSON.stringify(result[0]))
                 res.render('dashboard', {admin:result[0]})
             }
         }
     })
 })
 
+router.get("/logout", function(req,res){
+    localStorage.clear()
+    res.render('login',{message:''})
+
+})
 module.exports = router;
