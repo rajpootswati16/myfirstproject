@@ -79,7 +79,7 @@
                 <td><%= item.author %> <br> <%= item.publisher %></td>
                 <td><s> <%= item.price %> </s> <br> <%= item.offer %> </td>
                 <td><%= item.status %></td>
-                <td><a href="/books/displayposter?bookid= <%= item.bookid %> &bookname= <%= item.title %> &poster= <%= item.poster %>"><img src="/images/<%= item.poster %>" style="height: 45px; width: 40px; border-radius: 10px;"/> </a></td>
+                <td><a href="/books/displayposter?bookid= <%= item.bookid %> &bookname= <%= item.title %> &poster=<%=item.poster%>"><img src="/images/<%=item.poster%>" style="height: 45px; width: 40px; border-radius: 10px;"/> </a></td>
                 <td><a href="/books/edit_book_data?bookid= <%= item.bookid %>" style="text-decoration: none; font-weight: 500;">Edit/Delete</a></td>
             </tr>
             <% }) %>
